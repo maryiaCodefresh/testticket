@@ -25,7 +25,8 @@ In your cron trigger configuration, set a message (e.g., "using cron") in the Me
 
 Utilize the EVENT_MESSAGE variable in your pipeline steps with a condition like:
 
-{% raw %}
+{% raw %} 
+
     ```yaml
     Freestyle:
       title: Running alpine image
@@ -39,6 +40,7 @@ Utilize the EVENT_MESSAGE variable in your pipeline steps with a condition like:
           all:
             validateTriggerType: '"${{EVENT_MESSAGE}}" != "using cron"'
     ```
+
 {% endraw %}
 
 This ensures specific steps execute only when the cron job message is different from "using cron" and pipeline is triggered by cron.
@@ -46,6 +48,9 @@ This ensures specific steps execute only when the cron job message is different 
 ## Related Items
 
 [Triggers in pipelines]({{site.baseurl}}/docs/pipelines/triggers/)
+
 [Cron trigger event variables]({{site.baseurl}}/docs/pipelines/triggers/cron-triggers/#cron-event-payload)
+
 [Conditional execution of steps]({{site.baseurl}}/docs/pipelines/conditional-execution-of-steps/)
+
 [Freestyle step]({{site.baseurl}}/docs/pipelines/steps/freestyle/)
