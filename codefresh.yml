@@ -1,0 +1,29 @@
+version: '1.0'
+stages: []
+steps:
+  Freestyle:
+    title: Running docker image
+    type: freestyle
+    arguments:
+      image: 'quay.io/codefreshplugins/alpine:3.8'
+      commands:
+        - echo "Hello from cron"
+  Approve:
+    type: pending-approval
+    title: Wait for approval
+    when:
+      condition:
+        all:
+          validateTriggerType: '"${{EVENT_MESSAGE}}" != "using cron"'
+  Freestyle2:
+      title: Running docker image
+      type: freestyle
+      arguments:
+        image: 'quay.io/codefreshplugins/alpine:3.8'
+        commands:
+          - echo "After approval"
+      when:
+            condition:
+              all:
+                validateTriggerType: '"${{EVENT_MESSAGE}}" != "using cron"'
+        
